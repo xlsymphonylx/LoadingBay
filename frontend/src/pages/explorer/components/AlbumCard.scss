@@ -1,0 +1,144 @@
+@import '../../../styles/base';
+
+.album-card {
+  @extend %card;
+  padding:        0;
+  display:        flex;
+  flex-direction: column;
+  overflow:       hidden;
+  border-radius:  var(--radius);
+  cursor:         pointer;
+
+  &--selected { border-color: var(--accent); }
+
+  &__checkbox {
+    position:        absolute;
+    top:             8px;
+    right:           8px;
+    background:      rgba(0,0,0,0.55);
+    border-radius:   4px;
+    padding:         3px;
+    color:           var(--text-muted);
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+
+    &--checked { color: var(--accent); }
+  }
+
+  &__bulk-status {
+    position:        absolute;
+    top:             8px;
+    left:            8px;
+    background:      rgba(0,0,0,0.55);
+    border-radius:   4px;
+    padding:         4px;
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+
+    &--running { color: var(--info); }
+    &--done    { color: var(--success); }
+    &--failed  { color: var(--error); }
+  }
+
+  &__cover-wrap {
+    position:  relative;
+    width:     100%;
+    aspect-ratio: 1;
+    overflow:  hidden;
+    background: var(--bg-raised);
+  }
+
+  &__cover {
+    width:      100%;
+    height:     100%;
+    object-fit: cover;
+    position:   absolute;
+    inset:      0;
+    transition: opacity 0.3s;
+  }
+
+  &__placeholder {
+    position:        absolute;
+    inset:           0;
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+  }
+
+  &__info {
+    padding:     10px 12px;
+    display:     flex;
+    align-items: center;
+    gap:         6px;
+    border-top:  1px solid var(--border);
+    background:  var(--bg-surface);
+  }
+
+  &__name {
+    flex:          1;
+    font-size:     12px;
+    font-weight:   500;
+    overflow:      hidden;
+    text-overflow: ellipsis;
+    white-space:   nowrap;
+    color:         var(--text);
+  }
+
+  &__tag-btn {
+    @extend %btn--primary;
+    @extend %btn--sm;
+    flex-shrink: 0;
+    padding: 4px 7px;
+  }
+
+  &__lyrics-btn {
+    @extend %btn--ghost;
+    @extend %btn--sm;
+    flex-shrink: 0;
+    padding: 4px 7px;
+
+    &--running { opacity: 0.6; cursor: wait; }
+    &--done    { color: var(--success); }
+    &--error   { color: var(--error); }
+  }
+
+  &__spin {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+}
+
+.album-card {
+  &--confirm-delete { border-color: var(--error, #ef4444); }
+
+  &__delete-overlay {
+    position:         absolute;
+    inset:            0;
+    background:       rgba(239, 68, 68, 0.75);
+    display:          flex;
+    align-items:      center;
+    justify-content:  center;
+    color:            #fff;
+    font-weight:      600;
+    font-size:        0.82rem;
+    border-radius:    var(--radius) var(--radius) 0 0;
+    pointer-events:   none;
+  }
+
+  &__delete-btn {
+    @extend %btn--ghost;
+    @extend %btn--sm;
+    flex-shrink: 0;
+    padding: 4px 7px;
+    color: var(--text-muted);
+    transition: color 0.15s;
+
+    &:hover          { color: var(--error, #ef4444); }
+    &--confirm       { color: var(--error, #ef4444); }
+  }
+}

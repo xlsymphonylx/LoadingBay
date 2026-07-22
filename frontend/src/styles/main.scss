@@ -1,0 +1,45 @@
+@import 'base';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0;
+}
+
+html { font-size: 14px; }
+
+body {
+  background:  var(--bg);
+  color:       var(--text);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  min-height:  100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor:      pointer;
+  font-family: inherit;
+  font-size:   inherit;
+}
+
+code {
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  font-size:   0.88em;
+  background:  var(--bg-raised);
+  padding:     1px 5px;
+  border-radius: 4px;
+  color:       var(--accent);
+}
+
+a {
+  color: var(--info);
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }

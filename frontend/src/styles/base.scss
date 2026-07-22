@@ -1,0 +1,241 @@
+// ─── Animations ─────────────────────────────────────────────────────────────
+@keyframes spin     { to { transform: rotate(360deg); } }
+@keyframes fade-in  { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes pulse-bg { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+// ─── Ghost placeholder classes ───────────────────────────────────────────────
+
+// Card --------------------------------------------------------
+%card {
+  background:    var(--bg-surface);
+  border:        1px solid var(--border);
+  border-radius: var(--radius);
+  padding:       16px;
+}
+
+%card--interactive {
+  @extend %card;
+  cursor:     pointer;
+  transition: border-color 0.15s, transform 0.12s, box-shadow 0.12s;
+
+  &:hover {
+    border-color: var(--accent);
+    transform:    translateY(-2px);
+    box-shadow:   var(--shadow-sm);
+  }
+
+  &:active { transform: translateY(0); }
+}
+
+// Button variants ---------------------------------------------
+%btn {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             6px;
+  padding:         7px 14px;
+  border-radius:   var(--radius-sm);
+  font-size:       12px;
+  font-weight:     600;
+  border:          none;
+  cursor:          pointer;
+  transition:      background 0.15s, opacity 0.15s;
+  text-decoration: none;
+
+  &:disabled { opacity: 0.45; cursor: not-allowed; }
+}
+
+%btn--primary {
+  @extend %btn;
+  background: var(--accent);
+  color:      #000;
+  &:hover:not(:disabled) { filter: brightness(1.1); }
+}
+
+%btn--ghost {
+  @extend %btn;
+  background: var(--bg-raised);
+  color:      var(--text);
+  border:     1px solid var(--border);
+  &:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+}
+
+%btn--danger {
+  @extend %btn;
+  background: rgba(248,113,113,0.12);
+  color:      var(--error);
+  border:     1px solid rgba(248,113,113,0.25);
+  &:hover:not(:disabled) { background: rgba(248,113,113,0.2); }
+}
+
+%btn--success {
+  @extend %btn;
+  background: rgba(52,211,153,0.12);
+  color:      var(--success);
+  border:     1px solid rgba(52,211,153,0.25);
+  &:hover:not(:disabled) { background: rgba(52,211,153,0.2); }
+}
+
+%btn--sm {
+  padding:   4px 10px;
+  font-size: 11px;
+}
+
+%btn--icon {
+  @extend %btn;
+  padding: 6px;
+  background: transparent;
+  color:   var(--text-muted);
+  &:hover { color: var(--text); }
+}
+
+// Overlay / Modal ---------------------------------------------
+%overlay {
+  position:        fixed;
+  inset:           0;
+  background:      rgba(0,0,0,0.75);
+  backdrop-filter: blur(4px);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  z-index:         1000;
+}
+
+%modal {
+  background:    var(--bg-surface);
+  border:        1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow:    var(--shadow);
+  display:       flex;
+  flex-direction: column;
+  overflow:      hidden;
+}
+
+%modal__header {
+  display:         flex;
+  align-items:     center;
+  gap:             10px;
+  padding:         14px 18px;
+  border-bottom:   1px solid var(--border);
+  font-weight:     600;
+  font-size:       14px;
+}
+
+%modal__body {
+  padding:    16px 18px;
+  overflow-y: auto;
+  flex:       1;
+}
+
+// Badge -------------------------------------------------------
+%badge {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           4px;
+  font-size:     10px;
+  font-weight:   700;
+  padding:       2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+%badge--success { @extend %badge; background: rgba(52,211,153,0.15);  color: var(--success); }
+%badge--warning { @extend %badge; background: rgba(251,191,36,0.15);  color: var(--warning); }
+%badge--error   { @extend %badge; background: rgba(248,113,113,0.15); color: var(--error);   }
+%badge--info    { @extend %badge; background: rgba(96,165,250,0.15);  color: var(--info);    }
+%badge--muted   { @extend %badge; background: var(--bg-raised);        color: var(--text-muted); }
+
+// Input -------------------------------------------------------
+%input {
+  padding:       7px 10px;
+  border-radius: var(--radius-sm);
+  background:    var(--bg);
+  border:        1px solid var(--border);
+  color:         var(--text);
+  font-size:     12px;
+  font-family:   inherit;
+  outline:       none;
+  transition:    border-color 0.15s;
+
+  &::placeholder { color: var(--text-muted); }
+  &:focus        { border-color: var(--accent); }
+}
+
+// Progress bar ------------------------------------------------
+%progress-bar {
+  height:        3px;
+  border-radius: 99px;
+  background:    var(--border);
+  overflow:      hidden;
+
+  &::after {
+    content:    '';
+    display:    block;
+    height:     100%;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+}
+
+// Empty state -------------------------------------------------
+%empty-state {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  justify-content: center;
+  gap:            10px;
+  padding:        48px 16px;
+  color:          var(--text-muted);
+  font-size:      13px;
+  text-align:     center;
+}
+
+// Grid --------------------------------------------------------
+%grid--cards {
+  display:               grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap:                   14px;
+}
+
+// Tab ---------------------------------------------------------
+%tab {
+  @extend %btn;
+  background:    transparent;
+  color:         var(--text-muted);
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  padding:       10px 16px;
+  font-size:     13px;
+  font-weight:   500;
+
+  &:hover { color: var(--text); }
+}
+
+%tab--active {
+  color:        var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight:  600;
+}
+
+// Prompt box --------------------------------------------------
+%prompt-box {
+  @extend %card;
+  border-left:   3px solid var(--warning);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-top:    12px;
+  display:       flex;
+  flex-direction: column;
+  gap:           10px;
+}
+
+// Section label -----------------------------------------------
+%section-label {
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+  font-size:   11px;
+  font-weight: 600;
+  color:       var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

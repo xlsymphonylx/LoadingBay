@@ -1,0 +1,15 @@
+pub mod upload;
+pub mod chunked_upload;
+pub mod events;
+pub mod respond;
+pub mod files;
+pub mod beets_ws;
+pub mod history;
+pub mod music;
+pub mod lyrics;
+pub mod auth;
+pub mod admin;
+pub mod discover;
+pub mod navidrome;
+pub mod mb;
+pub mod allmusic;

@@ -1,0 +1,225 @@
+// ── Album layout ──────────────────────────────────────────────────────────────
+
+.discover__album {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.discover__album-hero {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+  align-items: flex-start;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.discover__album-cover {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+
+  img,
+  .discover-card__art-inner,
+  .discover-card__placeholder { width: 100%; height: 100%; object-fit: cover; }
+}
+
+.discover__album-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.discover__album-title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.discover__album-artist {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.discover__album-info {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.discover__dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, background 0.15s;
+  align-self: flex-start;
+
+  &:hover:not(:disabled) { opacity: 0.85; }
+  &:disabled { opacity: 0.6; cursor: default; }
+
+  &--done { background: var(--success); }
+  &--error { background: var(--error); }
+}
+
+.discover__dl-msg {
+  margin: 0;
+  font-size: 0.8rem;
+
+  &--done { color: var(--success); }
+  &--error { color: var(--error); }
+  &--loading { color: var(--text-muted); }
+}
+
+// ── Tracklist ─────────────────────────────────────────────────────────────────
+
+.discover__tracklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+
+.discover__track {
+  display: grid;
+  grid-template-columns: 28px 1fr 1fr auto auto;
+  align-items: center;
+  gap: 33px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--border-subtle, var(--border));
+  font-size: 0.875rem;
+
+  &:hover { background: var(--surface-hover); }
+}
+
+.discover__track-num {
+  text-align: right;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.discover__track-title {
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discover__track-dur {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+// ── Track highlight & share button ─────────────────────────────────────────────
+
+.discover__track-highlight {
+  background: rgba(99, 179, 237, 0.15) !important;
+  border-left: 3px solid #63b3ed;
+}
+
+.discover__track-play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+
+  &:hover {
+    color: var(--accent);
+    background: var(--surface-hover);
+  }
+}
+
+.discover__share-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  flex-shrink: 0;
+
+  &--album {
+    opacity: 1;
+    color: var(--text-muted);
+    margin-top: 4px;
+    align-self: flex-start;
+    &:hover { color: var(--accent); }
+  }
+
+  &:hover { color: var(--accent); }
+}
+
+.discover__track:hover .discover__share-btn,
+.discover__track-highlight .discover__share-btn {
+  opacity: 1;
+}
+
+// ── Clickable artist name in album header ─────────────────────────────────────
+
+.discover__album-artist--link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: inherit;
+  color: var(--text-muted);
+  text-align: left;
+  &:hover { color: var(--accent); text-decoration: underline; }
+}
+
+// ── Toast notification ─────────────────────────────────────────────────────────
+
+.discover__toast {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  padding: 10px 18px;
+  background: var(--surface, #2d2d2d);
+  border: 1px solid var(--border, rgba(255,255,255,0.12));
+  border-radius: 8px;
+  color: var(--text, #fff);
+  font-size: 0.875rem;
+  z-index: 1100;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  animation: toast-in 0.2s ease;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

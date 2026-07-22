@@ -1,0 +1,109 @@
+// ── Card ──────────────────────────────────────────────────────────────────────
+
+.discover-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.15s, box-shadow 0.15s;
+  padding: 0;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  // make the art wrapper position:relative so badges can absolute-position
+  &__art {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--bg);
+    overflow: hidden;
+    position: relative;
+  }
+
+  &__art-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    background: var(--bg);
+  }
+
+  &__info {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+
+  &__sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+
+  &__badges {
+    position:    absolute;
+    bottom:      5px;
+    right:       5px;
+    display:     flex;
+    gap:         3px;
+    z-index:     2;
+  }
+
+  &__badge {
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    width:           20px;
+    height:          20px;
+    border-radius:   50%;
+    backdrop-filter: blur(4px);
+
+    &--owned {
+      background: rgba(34, 197, 94, 0.85);
+      color: #fff;
+    }
+    &--partial {
+      background: rgba(234, 179, 8, 0.85);
+      color: #000;
+    }
+    &--lq {
+      background: rgba(249, 115, 22, 0.85);
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+// ── Discography controls (tabs + sort) ────────────────────────────────────────
+
+.discover__discography-controls {
+  display:     flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 0;
+
+  .discover__tabs {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.discover__sort-select {
+  background:    var(--surface-raised, var(--surface));
+  border:        1px solid var(--border);
+  border-radius: 6px;
+  color:         var(--text-muted);
+  font-size:     0.78rem;
+  padding:       4px 8px;
+  cursor:        pointer;
+  outline:       none;
+  margin-bottom: 1px; // align with tab underline baseline
+
+  &:hover { border-color: var(--accent); }
+  &:focus  { border-color: var(--accent); color: var(--text); }
+}
+
+.discover__discography {
+  display:        flex;
+  flex-direction: column;
+  gap:            16px;
+}

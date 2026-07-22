@@ -1,0 +1,11 @@
+@import '../../../styles/base';
+
+.job-list {
+  display:        flex;
+  flex-direction: column;
+  gap:            10px;
+
+  &__empty {
+    @extend %empty-state;
+  }
+}
